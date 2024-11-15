@@ -1,0 +1,101 @@
+/* Canvas Elements */
+canvas {
+    width: 100%;  
+    max-width: 250px; 
+    height: auto; 
+}
+
+/* Centering the Chart and Label Inside the Card */
+.chart-container {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 10px;
+}
+
+/* Container Customization */
+.container-custom {
+    padding: 10px;
+}
+
+/* Card Styling */
+.card {
+    background-color: #220d2e; /* Dark background for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow for dark theme */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%; /* Allow the card to take full width initially */
+    max-width: 400px; /* Increase the maximum width */
+    height: auto; /* Keep the height unchanged and adaptive */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+}
+
+/* Card Header */
+.card-header {
+    background-color: #3d045e; /* Slightly lighter dark background */
+    color: #ffffff; /* Light text */
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.2rem; /* Slightly larger font size for readability */
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+}
+
+/* Card Body */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    color: #ffffff; /* Light gray text for content */
+}
+
+/* Hover Effects for Interactivity */
+.card-body:hover {
+    color: #ffffff; /* Brighter text on hover */
+}
+
+/* General Text Styling */
+h1, h3 {
+    color: #ffffff; /* Light header text */
+}
+
+/* Button Styling */
+.btn {
+    background-color: #2e2e4d; /* Dark button background */
+    color: #ffffff; /* Light button text */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #414166; /* Lighter background on hover */
+    transform: scale(1.1); /* Subtle zoom effect on hover */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+        max-width: 90%; /* Adjust for smaller screens */
+    }
+}
+
+/* Body Background */
+body {
+    background-color: #977ca8;
+}

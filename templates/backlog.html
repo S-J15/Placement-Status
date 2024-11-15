@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backlog Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Home Button with Left Arrow Icon -->
+            <a href="{% url 'home' %}" class="btn btn-primary me-auto">
+                <i class="bi bi-arrow-left"></i> <!-- Left arrow icon -->
+            </a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Backlog Students</h1>
+
+        <!-- Tabs for each division -->
+        <ul class="nav nav-tabs" id="divisionTabs" role="tablist">
+            {% for division, students in division_wise_students.items %}
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if forloop.first %}active{% endif %}" id="{{ division }}-tab" data-bs-toggle="tab" href="#{{ division }}" role="tab" aria-controls="{{ division }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ division }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="tab-content" id="divisionTabsContent">
+            {% for division, students in division_wise_students.items %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ division }}" role="tabpanel" aria-labelledby="{{ division }}-tab">
+                    <div class="table-responsive mt-3">
+                        <h3 class="text-center">Division {{ division }}</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>PRN</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th></th> <!-- Added Action column for Update -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for student in students %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ student.prn }}</td>  <!-- Display PRN -->
+                                        <td>{{ student.name }}</td>
+                                        <td>{{ student.email }}</td>
+                                        <td>{{ student.phn }}</td>  <!-- Display Contact -->
+
+                                        <!-- Update Button: Use student's ID to generate the URL -->
+                                        <td>
+                                            <a href="{% url 'update_student' student.id %}" class="btn btn-warning btn-sm">Update</a>
+                                            <form action="{% url 'delete_student' student.id %}" method="POST" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash"></i> <!-- Bin Icon -->
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="6" class="text-center">No backlog students in this division</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
